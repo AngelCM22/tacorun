@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://brpj3k57syfm3"]
+
+[ext_resource type="Texture2D" uid="uid://u63f8annn7w5" path="res://Assets/ChatGPT Image 9 abr 2025, 22_54_05.png" id="1_80nbo"]
+[ext_resource type="Texture2D" uid="uid://82ucfha6bged" path="res://Assets/ChatGPT Image 10 abr 2025, 20_10_59.png" id="2_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://wi70q6bud7h8" path="res://player.tscn" id="3_feb5d"]
+[ext_resource type="PackedScene" uid="uid://dgpb17w4wn82d" path="res://carrito_tacos.tscn" id="4_fc0e3"]
+[ext_resource type="Script" uid="uid://h1cuujui27rc" path="res://CarritoSpawner.gd" id="5_7jktm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
+size = Vector2(732.063, 144.5)
+
+[node name="Game" type="Node2D"]
+position = Vector2(156, 11)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(198, 590)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(250, 590)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+z_index = 1
+position = Vector2(-49.0313, 567.25)
+shape = SubResource("RectangleShape2D_e2o6t")
+debug_color = Color(0.733333, 0.466667, 0.164706, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+position = Vector2(-55, 266)
+scale = Vector2(0.704346, 0.723877)
+texture = ExtResource("1_80nbo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(206, 608.028)
+scale = Vector2(0.714844, 0.850223)
+texture = ExtResource("2_e2o6t")
+region_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(-167, 79)
+up_direction = Vector2(1.66667e-05, 1)
+
+[node name="CarritoTacos" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(-10, 221)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(197.5, 586)
+scale = Vector2(0.711914, 0.835938)
+texture = ExtResource("2_e2o6t")
+
+[node name="Spawner" type="Node2D" parent="."]
+script = ExtResource("5_7jktm")
+carrito_escena = ExtResource("4_fc0e3")
