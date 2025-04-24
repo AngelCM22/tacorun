@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm7oow1b2iq4q"]
+
+[ext_resource type="Script" uid="uid://cv0drqs2jv350" path="res://tacos.gd" id="1_622f4"]
+[ext_resource type="Texture2D" uid="uid://hccxvej7v2bb" path="res://Assets/ChatGPT Image 11 abr 2025, 21_06_23.png" id="1_bonws"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_622f4"]
+size = Vector2(82, 63)
+
+[node name="Tacos" type="Area2D"]
+script = ExtResource("1_622f4")
+
+[node name="ChatGptImage11Abr2025,210623" type="Sprite2D" parent="."]
+position = Vector2(106, 75)
+scale = Vector2(0.0805664, 0.0805664)
+texture = ExtResource("1_bonws")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(107, 73.5)
+shape = SubResource("RectangleShape2D_622f4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

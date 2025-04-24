@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1qngceqe061y"]
+
+[ext_resource type="Texture2D" uid="uid://bnhse4pglw24f" path="res://Assets/ChatGPT Image 20 abr 2025, 18_38_19.png" id="1_i8vih"]
+[ext_resource type="Script" uid="uid://douml712h5ws0" path="res://Escenas/player.gd" id="1_qgqwx"]
+[ext_resource type="Texture2D" uid="uid://c1ia5u08euuux" path="res://Assets/ChatGPT Image 20 abr 2025, 18_38_19-2.png" id="2_qgqwx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8vih"]
+size = Vector2(158, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6njrx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_i8vih")
+}],
+"loop": true,
+"name": &"indle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_i8vih")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qgqwx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_i8vih")
+}],
+"loop": true,
+"name": &"run",
+"speed": 7.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_6njrx"]
+script/source = "extends AnimatedSprite2D
+"
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_qgqwx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(341, 449)
+shape = SubResource("RectangleShape2D_i8vih")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(343, 448)
+scale = Vector2(0.161377, 0.161377)
+sprite_frames = SubResource("SpriteFrames_6njrx")
+animation = &"indle"
+script = SubResource("GDScript_6njrx")

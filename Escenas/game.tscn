@@ -1,0 +1,125 @@
+[gd_scene load_steps=11 format=3 uid="uid://qmcc8jr0gtlq"]
+
+[ext_resource type="PackedScene" uid="uid://d1qngceqe061y" path="res://Escenas/player.tscn" id="1_0bm41"]
+[ext_resource type="Script" uid="uid://i4jj883ypgcr" path="res://Escenas/game.gd" id="1_5g6uq"]
+[ext_resource type="Texture2D" uid="uid://82ucfha6bged" path="res://Assets/ChatGPT Image 10 abr 2025, 20_10_59.png" id="1_obr3f"]
+[ext_resource type="PackedScene" uid="uid://bya10kwh6u423" path="res://spawner.tscn" id="3_3418m"]
+[ext_resource type="Script" uid="uid://bkr4sfyron4qp" path="res://Escenas/reinicio.gd" id="5_o5eqp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_obr3f"]
+size = Vector2(721.5, 274)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3418m"]
+size = Vector2(40, 1500)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3418m"]
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_5g6uq"]
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_o5eqp"]
+font_size = 50
+
+[node name="Game" type="Node"]
+script = ExtResource("1_5g6uq")
+
+[node name="Fondo" type="Sprite2D" parent="."]
+position = Vector2(359, 743.5)
+scale = Vector2(0.705078, 0.962891)
+texture = ExtResource("1_obr3f")
+
+[node name="Player" parent="." instance=ExtResource("1_0bm41")]
+position = Vector2(-155, 658)
+
+[node name="Caja de colision" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Caja de colision"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Caja de colision/StaticBody2D"]
+position = Vector2(362.25, 1349)
+shape = SubResource("RectangleShape2D_obr3f")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Caja de colision/StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Caja de colision/StaticBody2D/StaticBody2D"]
+position = Vector2(358, 37.125)
+shape = SubResource("RectangleShape2D_obr3f")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Caja de colision"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Caja de colision/StaticBody2D3"]
+position = Vector2(10, 740)
+shape = SubResource("RectangleShape2D_3418m")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Caja de colision"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Caja de colision/StaticBody2D2"]
+position = Vector2(711, 746)
+shape = SubResource("RectangleShape2D_3418m")
+
+[node name="Spawner4" parent="." instance=ExtResource("3_3418m")]
+position = Vector2(534, 122)
+
+[node name="Spawner3" parent="." instance=ExtResource("3_3418m")]
+position = Vector2(142, 80)
+
+[node name="Spawner2" parent="." instance=ExtResource("3_3418m")]
+position = Vector2(42, 205)
+
+[node name="Spawner" parent="." instance=ExtResource("3_3418m")]
+position = Vector2(357, 162)
+
+[node name="Score" type="Label" parent="."]
+offset_left = 332.0
+offset_top = 78.0
+offset_right = 453.0
+offset_bottom = 188.0
+text = "0"
+label_settings = SubResource("LabelSettings_3418m")
+
+[node name="Reinicio" type="CanvasLayer" parent="."]
+process_mode = 3
+visible = false
+script = ExtResource("5_o5eqp")
+
+[node name="Text Perder" type="Label" parent="Reinicio"]
+offset_left = 193.0
+offset_top = 184.0
+offset_right = 511.0
+offset_bottom = 294.0
+text = "Perdiste"
+label_settings = SubResource("LabelSettings_5g6uq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Reinicio"]
+offset_left = 264.0
+offset_top = 297.0
+offset_right = 470.0
+offset_bottom = 390.0
+
+[node name="Label2" type="Label" parent="Reinicio/HBoxContainer"]
+layout_mode = 2
+text = "Score:"
+label_settings = SubResource("LabelSettings_o5eqp")
+
+[node name="Final Score" type="Label" parent="Reinicio/HBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_o5eqp")
+
+[node name="Boton Reiniciar" type="Button" parent="Reinicio"]
+offset_left = 213.0
+offset_top = 438.0
+offset_right = 325.0
+offset_bottom = 482.0
+text = "Reiniciar"
+
+[node name="Boton Salir" type="Button" parent="Reinicio"]
+offset_left = 360.0
+offset_top = 437.0
+offset_right = 473.0
+offset_bottom = 484.0
+text = "Salir"
+
+[connection signal="pressed" from="Reinicio/Boton Reiniciar" to="Reinicio" method="_on_boton_reiniciar_pressed"]
+[connection signal="pressed" from="Reinicio/Boton Salir" to="Reinicio" method="_on_boton_salir_pressed"]
